@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { queryClient } from '../..'
+import { axiosInstance } from '../../api/axiosInstance'
 
 function Add() {
 
@@ -12,11 +14,11 @@ function Add() {
     const { data: addCategoryResponse, mutate: addNewCategory } = useMutation({
         mutationKey: ["addCategory"],
         mutationFn: async (data: any) => {
-            return axios.post("https://northwind.vercel.app/api/categories", data)
+            return axiosInstance.post("categories", data)
                 .then(res => res.data)
         },
         onSuccess: () => {
-            alert("Category added successfully")
+            queryClient.invalidateQueries({ queryKey: ["categories"] })
         },
         onError: (error) => {
             console.log("error", error)

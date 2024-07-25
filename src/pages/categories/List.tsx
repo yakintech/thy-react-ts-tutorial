@@ -3,15 +3,17 @@ import axios from 'axios'
 import React from 'react'
 import { queryClient } from '../..'
 import { Link } from 'react-router-dom'
+import { axiosInstance } from '../../api/axiosInstance'
 
 function List() {
 
     const { data: categories, isLoading } = useQuery({
         queryKey: ["categories"],
         queryFn: async () => {
-            return axios.get("https://northwind.vercel.app/api/categories")
+            return axiosInstance.get("categories")
                 .then((res) => res.data)
         },
+        // staleTime: 20000, //stale time ile cache süresi belirlenir
         // refetchInterval: 8000
     })
 

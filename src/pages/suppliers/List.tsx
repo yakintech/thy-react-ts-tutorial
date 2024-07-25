@@ -1,6 +1,6 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function List() {
 
@@ -9,7 +9,14 @@ function List() {
   const [error, seterror] = useState({})
 
   useEffect(() => {
-    loadSuppliers()
+    const controller = new AbortController();
+    const signal = controller.signal;
+             
+    loadSuppliers(signal)
+
+    return () => {
+      controller.abort()
+    }
   }, [])
 
 
@@ -17,8 +24,8 @@ function List() {
   // console.log("location", location)
 
 
-  const loadSuppliers = () => {
-    axios.get("https://northwind.vercel.app/api/suppliers")
+  const loadSuppliers = (signal?:any) => {
+    axios.get("https://northwind.vercel.app/api/suppliers", {signal})
       .then(res => {
         setSuppliers(res.data)
         setloading(false)
@@ -57,7 +64,7 @@ function List() {
         </thead>
         <tbody>
           {
-            suppliers.map((item: any) => <tr>
+            suppliers.map((item: any) => <tr key={item.id}>
               <td><Link to={`/suppliers/${item.id}`}>{item.id}</Link></td>
               <td>{item.companyName}</td>
               <td>{item.contactName}</td>
