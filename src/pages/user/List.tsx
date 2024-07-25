@@ -1,14 +1,10 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useGetUsers } from '../../hooks/useUsers'
 
 function List() {
 
-    let users = [
-        { id: 1, name: 'John Doe' },
-        { id: 2, name: 'Çağatay Yıldız' },
-        { id: 3, name: "Oğuzha Yılmaz" },
-        { id: 4, name: 'Ece Arslan' },
-    ]
+    const { users, loading, error } = useGetUsers()
 
     const navigate = useNavigate()
     const goDetail = (id: number) => {
@@ -17,19 +13,21 @@ function List() {
 
     return <>
         <h1>User List</h1>
-        <ul>
-            {
-                users.map(user => <li>
-                    <Link
-                        to={`/users/${user.id}`}
-                        state={{ user }}
+        {
+            loading ? <p>Loading...</p> : <ul>
+                {
+                    users.map((user: any) => <li key={user.id}>
+                        <Link
+                            to={`/users/${user.id}`}
+                            state={{ user }}
                         >
-                        {user.name}
-                    </Link>
-                    <button onClick={() => goDetail(user.id)}>Go Detail</button>
-                </li>)
-            }
-        </ul>
+                            {user.name}
+                        </Link>
+                        <button onClick={() => goDetail(user.id)}>Go Detail</button>
+                    </li>)
+                }
+            </ul>
+        }
     </>
 }
 
