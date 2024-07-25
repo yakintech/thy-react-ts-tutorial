@@ -9,6 +9,7 @@ function SiteHeader() {
             {/*replace özelliğii sayesinde sayfa geçişlerinde geri tuşuna basıldığında bir önceki sayfaya gitmez */}
             <li><Link replace to="/contact">Contact</Link></li>
             <li><Link to="/suppliers">Suppliers</Link></li>
+            <li><Link to="/categories">Categories</Link></li>
             <li><Link to="/users">Users</Link></li>
         </ul>
     </>

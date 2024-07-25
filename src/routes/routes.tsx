@@ -5,6 +5,7 @@ import Contact from "../pages/Contact"
 import DashboardLayout from "../components/layout-components/DashboardLayout"
 import { userRoutes } from "../pages/user/routes"
 import { suppliersRoutes } from "../pages/suppliers/routes"
+import { categoryRoutes } from "../pages/categories/routes"
 
 
 
@@ -29,7 +30,8 @@ const Router = () => {
                     element: <Contact />
                 },
                 ...userRoutes,
-                ...suppliersRoutes
+                ...suppliersRoutes,
+                ...categoryRoutes
             ]
         }
     ])
