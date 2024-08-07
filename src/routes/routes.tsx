@@ -6,6 +6,7 @@ import DashboardLayout from "../components/layout-components/DashboardLayout"
 import { userRoutes } from "../pages/user/routes"
 import { suppliersRoutes } from "../pages/suppliers/routes"
 import { categoryRoutes } from "../pages/categories/routes"
+import { productRoutes } from "../pages/products/routes"
 
 
 
@@ -31,7 +32,8 @@ const Router = () => {
                 },
                 ...userRoutes,
                 ...suppliersRoutes,
-                ...categoryRoutes
+                ...categoryRoutes,
+                ...productRoutes
             ]
         }
     ])

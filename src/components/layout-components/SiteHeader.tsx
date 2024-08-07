@@ -1,17 +1,22 @@
+import { AppBar, Box, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 function SiteHeader() {
+
+
+
     return <>
-        <ul style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            {/*replace özelliğii sayesinde sayfa geçişlerinde geri tuşuna basıldığında bir önceki sayfaya gitmez */}
-            <li><Link replace to="/contact">Contact</Link></li>
-            <li><Link to="/suppliers">Suppliers</Link></li>
-            <li><Link to="/categories">Categories</Link></li>
-            <li><Link to="/users">Users</Link></li>
-        </ul>
+
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <ul className='menus' style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <Link to='/'>Home</Link>
+                    </Typography>
+                </ul>
+            </AppBar>
+        </Box>
     </>
 }
 

@@ -1,12 +1,15 @@
 import React from 'react'
 import SiteHeader from './SiteHeader'
 import SiteFooter from './SiteFooter'
+import { Container } from '@mui/material'
 
-function DashboardLayout({children}: any) {
+function DashboardLayout({ children }: any) {
   return <>
-    <SiteHeader/>
-    {children}
-    <SiteFooter/>
+    <SiteHeader />
+    <Container>
+      {children}
+    </Container>
+    <SiteFooter />
   </>
 }
 
