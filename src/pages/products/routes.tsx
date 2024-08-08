@@ -4,6 +4,7 @@ import Add from "./Add";
 import List from "./List";
 import ListPremium from "./ListPremium";
 import Update from "./Update";
+import Detail from "./Detail";
 
 
 export const productRoutes = [
@@ -26,6 +27,10 @@ export const productRoutes = [
             {
                 path:"update/:id",
                 element: <Update/>
+            },
+            {
+                path:"detail/:id",
+                element: <Detail/>
             }
         ]
     }

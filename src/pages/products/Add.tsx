@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Grid, Stack, TextField } from '@mui/material'
+import { Autocomplete, Button, Checkbox, Grid, Stack, Switch, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../api/axiosInstance'
 import { enqueueSnackbar } from 'notistack'
@@ -11,6 +11,7 @@ function Add() {
     const [unitsInStock, setunitsInStock] = useState(0)
     const [quantityPerUnit, setquantityPerUnit] = useState("")
     const [categoryId, setcategoryId] = useState(0)
+    const [discontinued, setdiscontinued] = useState(false)
 
     const [categories, setcategories] = useState([])
 
@@ -36,7 +37,8 @@ function Add() {
             unitPrice: newPrice,
             unitsInStock,
             quantityPerUnit,
-            categoryId
+            categoryId,
+            discontinued
         }).then(res => {
             enqueueSnackbar("Product added successfully", { variant: "success" })
             navigate("/products")
@@ -75,7 +77,15 @@ function Add() {
             <Grid item xs={12} md={6}>
                 <TextField fullWidth label="Quantity Per Unit" variant="outlined" onChange={(e) => setquantityPerUnit(e.target.value)} />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
+                {/* <Checkbox checked={discontinued} onChange={(e) => setdiscontinued(e.target.checked)} /> Discontinued */}
+            <Switch
+                checked={discontinued}
+                onChange={(e) => setdiscontinued(e.target.checked)}
+                inputProps={{ 'aria-label': 'controlled' }}
+            />
+            </Grid>
+            <Grid item xs={12} md={6}>
 
                 <Autocomplete
                     disablePortal

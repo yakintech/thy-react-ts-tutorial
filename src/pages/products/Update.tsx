@@ -61,7 +61,7 @@ function Update() {
             </Grid>
             <Grid item xs={12}>
 
-                <Autocomplete
+                {/* <Autocomplete
                     disablePortal
                     options={categories}
                     sx={{ width: 300 }}
@@ -69,7 +69,7 @@ function Update() {
                     value={categories.find((item: any) => item.id == categoryId)}
                     onChange={(e, value) => setcategoryId(Number(value.id))}
                     renderInput={(params) => <TextField {...params} label="Category" />}
-                />
+                /> */}
 
             </Grid>
             <Grid item xs={12}>

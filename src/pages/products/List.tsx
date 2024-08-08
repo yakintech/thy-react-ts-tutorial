@@ -49,6 +49,12 @@ function List() {
             flex: 1
         },
         {
+            field: "discontinued",
+            headerName: "Discontinued",
+            flex: 1,
+            renderCell: (item: any) => <>{item.row.discontinued ? "Yes" : "No"}</>
+        },
+        {
             field: "unitPrice",
             headerName: "Unit Price",
             flex: 1,
@@ -75,6 +81,12 @@ function List() {
             headerName: "Update",
             flex: 1,
             renderCell: (item:any) => <Button variant="contained" color="primary" onClick={() => navigate(`/products/update/${item.row.id}`)}>Update</Button>
+        },
+        {
+            field:"detail",
+            headerName: "Detail",
+            flex: 1,
+            renderCell: (item:any) => <Button variant="contained" color="warning" onClick={() => navigate(`/products/detail/${item.row.id}`)}>Detail</Button>
         }
     ]
 
