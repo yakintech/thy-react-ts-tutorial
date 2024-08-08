@@ -1,7 +1,9 @@
+import { SnackbarProvider } from 'notistack'
 import Router from './routes/routes'
 
 function App() {
   return <>
+   <SnackbarProvider />
     <Router/>
   </>
 }

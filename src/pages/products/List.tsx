@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../api/axiosInstance'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-import { Button } from '@mui/material'
+import { Button, Divider } from '@mui/material'
 import { trTR } from '@mui/x-data-grid/locales';
+import { useNavigate } from 'react-router-dom';
 
 
 function List() {
@@ -43,10 +44,15 @@ function List() {
             renderCell: (item: any) => <>{item.row.name.toUpperCase()}</>
         },
         {
+            field:"categoryId",
+            headerName: "Category ID",
+            flex: 1
+        },
+        {
             field: "unitPrice",
             headerName: "Unit Price",
             flex: 1,
-            renderCell: (item: any) => <>{item.row.unitPrice?.toFixed(2)} $</>
+            renderCell: (item: any) => <>{Number(item.row.unitPrice)?.toFixed(2)} $</>
         },
         {
             field: "unitsInStock",
@@ -63,11 +69,21 @@ function List() {
             headerName: "Delete",
             flex: 1,
             renderCell: (item: any) => <Button onClick={() => deleteProduct(item.row.id)} variant="contained" color="error">Delete</Button>
+        },
+        {
+            field:"update",
+            headerName: "Update",
+            flex: 1,
+            renderCell: (item:any) => <Button variant="contained" color="primary" onClick={() => navigate(`/products/update/${item.row.id}`)}>Update</Button>
         }
     ]
 
 
+    const navigate = useNavigate()
+
     return <>
+        <Button variant="contained" onClick={() => navigate("/products/add")}>Add New Product</Button>
+        <hr />
         <div style={{ height: 400 }}>
             <DataGrid
                 rows={products} //DataGrid datasource
